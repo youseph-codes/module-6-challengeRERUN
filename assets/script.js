@@ -6,6 +6,32 @@ const countryEl = document.getElementById("country");
 const weatherForecastEl = document.getElementById("weather-forecast");
 const currentTempEl = document.getElementById("current-temp");
 
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const API = "e2b4d827b77e0a0e6ef65a28f635ab53";
+
 setInterval(() => {
   const time = new Date();
   const month = time.getMonth();
@@ -18,4 +44,12 @@ setInterval(() => {
 
   timeEl.innerHTML =
     hoursIn12HrFormat + ":" + minute + " " + `<span id="am-pm">${ampm}</span>`;
+
+  dateEL.innerHTML = days[day] + ", " + date + " " + months[month];
 }, 1000);
+getWeatherData();
+function getWeatherData() {
+  navigator.geolocation.getCurrentPosition((success) => {
+    console.log(success);
+  });
+}
